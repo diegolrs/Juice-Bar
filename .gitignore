@@ -34,3 +34,6 @@
 # From IDEs
 .vs
 .vscode
+
+# Generated
+.order

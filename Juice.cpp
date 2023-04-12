@@ -8,13 +8,14 @@ Juice::Juice(JuiceFlavorEnum flavor, JuiceSizeEnum size, float value) : Item("Ju
 
 std::string Juice::to_string()
 {
-    int moneyPrecision = 2;
     std::stringstream stream;
 
     stream << to_string(this->flavor) << " ";
     stream << getName() << " - ";
     stream << to_string(this->size) << " - ";
-    stream << "$" << std::fixed << std::setprecision(moneyPrecision) << getValue();
+    stream << "$" << std::fixed << std::setprecision(Item::MONEY_PRECISION) << getValue();
+    stream << " - x" << quantity;
+
     return stream.str();
 }
 

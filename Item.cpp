@@ -34,5 +34,10 @@ int Item::getQuantity()
 
 int Item::increaseQuantity(int amount)
 {
-    quantity += 1;
+    quantity += amount;
+}
+
+int Item::decreaseQuantity(int amount)
+{
+    quantity -= amount;
 }

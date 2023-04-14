@@ -50,12 +50,22 @@ void ClientInterface::displayOrders(std::vector<Order*>* orders)
 void ClientInterface::displayOrdersMenu(std::vector<Order*>* orders)
 {   
     ConsoleUtils::clearConsole();
+    if(orders->size() == 0)
+        std::cout << "There is no order to display" << std::endl;
     displayOrders(orders);
     ConsoleUtils::waitKey();
 }
 
 void ClientInterface::updateOrdersMenu(std::vector<Order*>* orders)
 {
+    if(orders->size() == 0)
+    {
+        ConsoleUtils::clearConsole();
+        std::cout << "There is no order to update" << std::endl;
+        ConsoleUtils::waitKey();
+        return;
+    }
+
     int orderToUpdate;
     Order* order = nullptr;
 
@@ -68,7 +78,7 @@ void ClientInterface::updateOrdersMenu(std::vector<Order*>* orders)
         std::cin >> orderToUpdate;
 
         if(orderToUpdate == -1)
-            break;
+            return;
 
         if(OrderUtils::containsOrderNumber(orders, orderToUpdate))
         {
@@ -78,19 +88,19 @@ void ClientInterface::updateOrdersMenu(std::vector<Order*>* orders)
         }
     }
 
-    updateOrder(order);
-}
-
-void ClientInterface::updateOrder(Order* order)
-{
-    while(true)
-    {
-        break;
-    }
+    printOrderMenu(order);
 }
 
 void ClientInterface::deleteOrdersMenu(std::vector<Order*>* orders)
 {
+    if(orders->size() == 0)
+    {
+        ConsoleUtils::clearConsole();
+        std::cout << "There is no order to delete" << std::endl;
+        ConsoleUtils::waitKey();
+        return;
+    }
+
     int orderToDelete;
     Order* order = nullptr;
 
@@ -119,5 +129,42 @@ void ClientInterface::deleteOrdersMenu(std::vector<Order*>* orders)
 void ClientInterface::deleteSucessfullMenu(std::vector<Order*>* orders, int itemIndex)
 {   
     std::cout << std::endl << "Ticket order #" << itemIndex << " was sucessfull deleted" << std::endl;
+    ConsoleUtils::waitKey();
+}
+
+// Items Client Interfaces
+void ClientInterface::printOrderMenu(Order* order)
+{
+    int option;
+    while(true)
+    {
+        ConsoleUtils::clearConsole();
+
+        std::cout << "0: Create item" << std::endl;
+        std::cout << "1: Display items" << std::endl;
+        std::cout << "2: Update item" << std::endl;
+        std::cout << "3: Delete item" << std::endl;
+        std::cout << "4: Return" << std::endl;
+        std::cout << "Choose one option: " << std::endl;
+        std::cin >> option;
+
+        switch(option)
+        {
+            case 0: break;
+            case 1:
+                displayOrderItems(order);
+                break;
+            case 4:
+                return;
+            default:
+                break;
+        }
+    }
+}
+
+void ClientInterface::displayOrderItems(Order* order)
+{
+    ConsoleUtils::clearConsole();
+    std::cout << order->to_string();
     ConsoleUtils::waitKey();
 }

@@ -16,8 +16,9 @@ class ClientInterface
         void displayOrders(std::vector<Order*>* orders);
         void displayOrdersMenu(std::vector<Order*>* orders);
         void updateOrdersMenu(std::vector<Order*>* orders);
-        void updateOrder(Order* order);
-
         void deleteOrdersMenu(std::vector<Order*>* orders);
         void deleteSucessfullMenu(std::vector<Order*>* orders, int itemIndex);
+
+        void printOrderMenu(Order* order);
+        void displayOrderItems(Order* order);
 };

@@ -1,10 +1,17 @@
 #include "JuiceFactory.hpp"
 
-JuiceFactory::JuiceFactory() {}
-
 Juice* JuiceFactory::createJuice(Juice::JuiceFlavorEnum flavor, Juice::JuiceSizeEnum size)
 {
     return new Juice(flavor, size, calculatePriceForSize(size));
+}
+
+Juice* JuiceFactory::createJuice(int flavor, int size)
+{
+    return new Juice(
+                        Juice::JuiceFlavorEnum(flavor),
+                        Juice::JuiceSizeEnum(size),
+                        calculatePriceForSize(Juice::JuiceSizeEnum(size))
+                    );
 }
 
 float JuiceFactory::calculatePriceForSize(Juice::JuiceSizeEnum size)

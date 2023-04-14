@@ -5,6 +5,25 @@ Order::Order(int number)
     this->number = number;
 }
 
+std::string Order::to_string()
+{
+    std::stringstream stream;
+
+    stream << "-----------------";
+    stream << std::endl << "#ticket " << number << std::endl;
+
+    for(int i = 0; i < items.size(); i++)
+    {
+        stream << items[i]->to_string() << std::endl;
+    }
+
+    stream << "Total: $";
+    stream << std::fixed << std::setprecision(Item::MONEY_PRECISION) << calculateTotal();
+    stream << std::endl;
+
+    return stream.str();
+}
+
 void Order::addItem(Item* item)
 {
     for(int i = 0; i < items.size(); i++)
@@ -34,23 +53,9 @@ void Order::removeItem(Item* item)
     }
 }
 
-std::string Order::to_string()
+std::vector<Item*> Order::getItems()
 {
-    std::stringstream stream;
-
-    stream << "-----------------";
-    stream << std::endl << "#ticket " << number << std::endl;
-
-    for(int i = 0; i < items.size(); i++)
-    {
-        stream << items[i]->to_string() << std::endl;
-    }
-
-    stream << "Total: $";
-    stream << std::fixed << std::setprecision(Item::MONEY_PRECISION) << calculateTotal();
-    stream << std::endl;
-
-    return stream.str();
+    return this->items;
 }
 
 float Order::calculateTotal()
@@ -59,4 +64,14 @@ float Order::calculateTotal()
     for(int i = 0; i < items.size(); i++)
         total += items[i]->getValue();
     return total;
+}
+
+int Order::getNumber()
+{
+    return number;
+}
+
+void Order::setNumber(int number)
+{
+    this->number = number;
 }

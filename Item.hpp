@@ -15,6 +15,7 @@ class Item
         int getQuantity();
         int increaseQuantity(int amount=1);
         int decreaseQuantity(int amount=1);
+        void setQuantity(int amount);
 
         virtual std::string to_string() = 0;
         virtual bool isEquals(Item* other) const = 0;

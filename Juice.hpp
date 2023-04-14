@@ -22,9 +22,12 @@ class Juice : public Item
         Juice(JuiceFlavorEnum flavor, JuiceSizeEnum size, float value);
 
         std::string to_string() override;
-        bool isEquals(Item* other) const override;
 
+        bool isEquals(Item* other) const override;
         bool operator==(const Juice& other) const;
+
+        JuiceFlavorEnum getFlavor();
+        JuiceSizeEnum getSize();
     private:
         JuiceFlavorEnum flavor;
         JuiceSizeEnum size;

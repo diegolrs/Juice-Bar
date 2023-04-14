@@ -19,7 +19,7 @@ void Item::setName(std::string name)
 
 float Item::getValue()
 {
-    return this->value;
+    return this->value * this->quantity;
 }
 
 void Item::setValue(float value)
@@ -40,4 +40,9 @@ int Item::increaseQuantity(int amount)
 int Item::decreaseQuantity(int amount)
 {
     quantity -= amount;
+}
+
+void Item::setQuantity(int amount)
+{
+    quantity = amount;
 }

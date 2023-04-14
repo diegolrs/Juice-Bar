@@ -10,11 +10,11 @@ std::string Juice::to_string()
 {
     std::stringstream stream;
 
+    stream << "x" << quantity << " ";
     stream << to_string(this->flavor) << " ";
-    stream << getName() << " - ";
-    stream << to_string(this->size) << " - ";
+    stream << getName() << " (";
+    stream << to_string(this->size) << ") - ";
     stream << "$" << std::fixed << std::setprecision(Item::MONEY_PRECISION) << getValue();
-    stream << " - x" << quantity;
 
     return stream.str();
 }
@@ -29,6 +29,16 @@ bool Juice::isEquals(Item* other) const
     if (Juice* c = dynamic_cast<Juice*>(other))
         return (c->flavor == flavor && c->size == size);
     return false;
+}
+
+Juice::JuiceFlavorEnum Juice::getFlavor()
+{
+    return this->flavor;
+}
+
+Juice::JuiceSizeEnum Juice::getSize()
+{
+    return this->size;
 }
 
 std::string Juice::to_string(JuiceFlavorEnum flavor)

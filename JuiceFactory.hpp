@@ -1,12 +1,11 @@
 #pragma once
 #include "Juice.hpp"
 
-class JuiceFactory
+namespace JuiceFactory
 {
-    public:
-        JuiceFactory();
         Juice* createJuice(Juice::JuiceFlavorEnum flavor, Juice::JuiceSizeEnum size);
-    private:
+        Juice* createJuice(int flavor, int size);
+
         const float _250ml_JUICE_PRICE = 4.99f;
         const float _500ml_JUICE_PRICE = 6.99f;
         const float _750ml_JUICE_PRICE = 8.99f;

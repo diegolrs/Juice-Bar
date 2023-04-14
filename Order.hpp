@@ -9,10 +9,15 @@
 class Order
 {
     public:
-        Order(int number);
+        Order(int number=-1);
+        std::string to_string();
+
         void addItem(Item* item);
         void removeItem(Item* item);
-        std::string to_string();
+        std::vector<Item*> getItems();
+
+        int getNumber();
+        void setNumber(int number);
         float calculateTotal();
     private:
         int number;

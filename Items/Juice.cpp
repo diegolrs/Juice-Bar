@@ -41,7 +41,37 @@ Juice::JuiceSizeEnum Juice::getSize()
     return this->size;
 }
 
-std::string Juice::to_string(JuiceFlavorEnum flavor)
+std::string Juice::get_flavors_str(bool includeIndex, int firstIndex)
+{
+    std::stringstream stream;
+
+    for (int i = (int)(JuiceFlavorEnum::APPLE); i <= (int)(JuiceFlavorEnum::TAMARIND); i++)
+    {
+        if(includeIndex)
+            stream << "(" << i+firstIndex << ") ";
+
+        stream << to_string((JuiceFlavorEnum)i) << std::endl;
+    }
+
+    return stream.str();
+}
+
+std::string Juice::get_sizes_str(bool includeIndex, int firstIndex)
+{
+    std::stringstream stream;
+
+    for (int i = (int)(JuiceSizeEnum::_250ml); i <= (int)(JuiceSizeEnum::_1l); i++)
+    {
+        if(includeIndex)
+            stream << "(" << i+firstIndex << ") ";
+
+        stream << to_string((JuiceSizeEnum)i) << std::endl;
+    }
+
+    return stream.str();
+}
+
+const std::string Juice::to_string(JuiceFlavorEnum flavor)
 {
     switch (flavor)
     {
@@ -61,7 +91,7 @@ std::string Juice::to_string(JuiceFlavorEnum flavor)
     }
 }
 
-std::string Juice::to_string(JuiceSizeEnum size)
+const std::string Juice::to_string(JuiceSizeEnum size)
 {
     switch(size)
     {

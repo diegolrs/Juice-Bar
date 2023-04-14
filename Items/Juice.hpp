@@ -28,12 +28,15 @@ class Juice : public Item
 
         JuiceFlavorEnum getFlavor();
         JuiceSizeEnum getSize();
+
+        static std::string get_flavors_str(bool includeIndex=true, int firstIndex=0);
+        static std::string get_sizes_str(bool includeIndex=true, int firstIndex=0);
     private:
         JuiceFlavorEnum flavor;
         JuiceSizeEnum size;
 
-        std::string to_string(JuiceFlavorEnum flavor);
-        std::string to_string(JuiceSizeEnum size);
+        const static std::string to_string(JuiceFlavorEnum flavor);
+        const static std::string to_string(JuiceSizeEnum size);
 
         void setupJuiceFlavors();
         void setupJuiceSizes();

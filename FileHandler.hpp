@@ -7,7 +7,9 @@
 #include <vector>
 
 #include "Order.hpp"
-#include "StringExtensions.hpp"
+#include "Utils/StringExtensions.hpp"
+#include "Utils/OrderUtils.hpp"
+#include "Factories/JuiceFactory.hpp"
 
 #define META_FILES_ADDRESS "config.meta"
 #define ORDER_FILE_EXTENSION ".order"
@@ -16,31 +18,8 @@
 
 namespace FileHandler
 {
-    bool hasOrderInVector(std::vector<Order*>* orders, int orderNumber)
-    {
-        for(int i = 0; i < orders->size(); i++)
-        {
-            if(orders->at(i)->getNumber() == orderNumber)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    int getOrderPositionAtVector(std::vector<Order*>* orders, int orderNumber)
-    {
-        for(int i = 0; i < orders->size(); i++)
-        {
-            if(orders->at(i)->getNumber() == orderNumber)
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }
+    const std::string ORDER_DATABASE = "orders.data";
+    const std::string CLIENT_DATABASE = "clients.data";
 
     std::vector<Order*>* readOrders(std::string address)
     {
@@ -59,10 +38,10 @@ namespace FileHandler
 
                 int orderNumber = std::stoi(data[0]);
 
-                if(!hasOrderInVector(orders, orderNumber))
+                if(!OrderUtils::containsOrderNumber(orders, orderNumber))
                     orders->push_back(new Order(orderNumber));
 
-                int idAtVector = getOrderPositionAtVector(orders, orderNumber);
+                int idAtVector = OrderUtils::getOrderIndexPosition(orders, orderNumber);
                 
                 if(StringExtensions::Contains(line, "Juice"))
                 {

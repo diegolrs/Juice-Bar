@@ -1,0 +1,1 @@
+g++ *.cpp Items/*.cpp Factories/*.cpp Utils/*.cpp -o program

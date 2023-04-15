@@ -14,12 +14,12 @@ class Order
 
         void addItem(Item* item);
         void removeItem(Item* item);
-        std::vector<Item*> getItems();
+        std::vector<Item*>* getItems();
 
         int getNumber();
         void setNumber(int number);
         float calculateTotal();
     private:
         int number;
-        std::vector<Item*> items;
+        std::vector<Item*>* items;
 };

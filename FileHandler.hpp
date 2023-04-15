@@ -71,15 +71,15 @@ namespace FileHandler
         for(int i = 0; i < orders->size(); i++)
         {
             Order* order = orders->at(i);
-            std::vector<Item*> items = order->getItems();
+            std::vector<Item*>* items = order->getItems();
 
-            for(int j = 0; j < items.size(); j++)
+            for(int j = 0; j < items->size(); j++)
             {
                 // Ticket Order
                 file << order->getNumber()  << ",";
 
                 // Juice
-                if (Juice* juice = dynamic_cast<Juice*>(items[j]))
+                if (Juice* juice = dynamic_cast<Juice*>(items->at(j)))
                 {
                     file << "Juice";
                     file << "," << static_cast<int>(juice->getFlavor());

@@ -25,6 +25,18 @@ std::string Order::to_string()
     return stream.str();
 }
 
+std::string Order::to_string_with_index()
+{
+    std::stringstream stream;
+
+    for(int i = 0; i < items->size(); i++)
+    {
+        stream << i << ") " << items->at(i)->to_string() << std::endl;
+    }
+
+    return stream.str();
+}
+
 void Order::addItem(Item* item)
 {
     for(int i = 0; i < items->size(); i++)
@@ -52,6 +64,11 @@ void Order::removeItem(Item* item)
             return;
         }
     }
+}
+
+void Order::setItem(Item* item, int index)
+{
+    items->at(index) = item;
 }
 
 std::vector<Item*>* Order::getItems()

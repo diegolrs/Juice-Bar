@@ -11,13 +11,8 @@
 #include "Utils/OrderUtils.hpp"
 #include "Factories/JuiceFactory.hpp"
 
-#define META_FILES_ADDRESS "config.meta"
-#define ORDER_FILE_EXTENSION ".order"
-
 namespace FileHandler
 {
-    //const std::string ORDER_DATABASE = "orders.data";
-    //const std::string CLIENT_DATABASE = "clients.data";
     const std::string JUICE_TAG = "Juice";
 
     std::vector<Order*>* readOrders(std::string address)

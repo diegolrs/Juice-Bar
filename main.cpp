@@ -8,14 +8,16 @@
 #include "FileHandler.hpp"
 #include "ClientInterface.hpp"
 
+#define FILE_ADDRESS "data.order"
+
 using namespace std;
 
 int main() 
 {
     ClientInterface* client = new ClientInterface();
-    vector<Order*>* orders = FileHandler::readOrders("order1.order");
+    vector<Order*>* orders = FileHandler::readOrders(FILE_ADDRESS);
     client->startRunning(orders);
-    FileHandler::writeOrders(orders, "order2.order");
+    FileHandler::writeOrders(orders, FILE_ADDRESS);
     
     return 0;
 }

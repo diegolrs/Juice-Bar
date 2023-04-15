@@ -13,6 +13,7 @@ class ClientInterface
         void startRunning(std::vector<Order*>* orders);
     private:
         void printMainMenu(std::vector<Order*>* orders);
+        void createOrder(std::vector<Order*>* orders);
         void displayOrders(std::vector<Order*>* orders);
         void displayOrdersMenu(std::vector<Order*>* orders);
         void updateOrdersMenu(std::vector<Order*>* orders);

@@ -22,7 +22,9 @@ void ClientInterface::printMainMenu(std::vector<Order*>* orders)
 
         switch(option)
         {
-            case 0: break;
+            case 0: 
+                createOrder(orders);
+                break;
             case 1: 
                 displayOrdersMenu(orders);
                 break;
@@ -39,6 +41,24 @@ void ClientInterface::printMainMenu(std::vector<Order*>* orders)
                 break;
         }
     }
+}
+
+void ClientInterface::createOrder(std::vector<Order*>* orders)
+{
+    int i;
+    for(i = 1;;i++)
+    {
+        if(!OrderUtils::containsOrderNumber(orders, i))
+        {
+            orders->push_back(new Order(i));
+            OrderUtils::sortOrders(orders);
+            break;
+        }
+    }
+
+    ConsoleUtils::clearConsole();
+    std::cout << "A ticket order was created with number #" << i << std::endl;
+    ConsoleUtils::waitKey();
 }
 
 void ClientInterface::displayOrders(std::vector<Order*>* orders)
@@ -120,6 +140,7 @@ void ClientInterface::deleteOrdersMenu(std::vector<Order*>* orders)
             int index = OrderUtils::getOrderIndexPosition(orders, orderToDelete);
             int orderNumber = orders->at(index)->getNumber();
             orders->erase(orders->begin() + index);
+            OrderUtils::sortOrders(orders);
             deleteSucessfullMenu(orders, orderNumber);
             break;
         }

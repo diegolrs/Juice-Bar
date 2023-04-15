@@ -1,27 +1,45 @@
 #include "OrderUtils.hpp"
 
-bool OrderUtils::containsOrderNumber(std::vector<Order*>* orders, int orderNumber)
+namespace OrderUtils
 {
-    for(int i = 0; i < orders->size(); i++)
+// Private Members
+    namespace
     {
-        if(orders->at(i)->getNumber() == orderNumber)
+        bool sortOrdersFunction(Order* a, Order*b)
         {
-            return true;
+            return a->getNumber() < b->getNumber();
         }
     }
 
-    return false;
-}
-
-int OrderUtils::getOrderIndexPosition(std::vector<Order*>* orders, int orderNumber)
-{
-    for(int i = 0; i < orders->size(); i++)
+// Public Members
+    bool containsOrderNumber(std::vector<Order*>* orders, int orderNumber)
     {
-        if(orders->at(i)->getNumber() == orderNumber)
+        for(int i = 0; i < orders->size(); i++)
         {
-            return i;
+            if(orders->at(i)->getNumber() == orderNumber)
+            {
+                return true;
+            }
         }
+
+        return false;
     }
 
-    return -1;
+    int getOrderIndexPosition(std::vector<Order*>* orders, int orderNumber)
+    {
+        for(int i = 0; i < orders->size(); i++)
+        {
+            if(orders->at(i)->getNumber() == orderNumber)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    void sortOrders(std::vector<Order*>* orders)
+    {
+        std::sort(orders->begin(), orders->end(), sortOrdersFunction);
+    }
 }

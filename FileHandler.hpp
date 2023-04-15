@@ -14,12 +14,11 @@
 #define META_FILES_ADDRESS "config.meta"
 #define ORDER_FILE_EXTENSION ".order"
 
-#define JUICE_TAG = "Juice"
-
 namespace FileHandler
 {
-    const std::string ORDER_DATABASE = "orders.data";
-    const std::string CLIENT_DATABASE = "clients.data";
+    //const std::string ORDER_DATABASE = "orders.data";
+    //const std::string CLIENT_DATABASE = "clients.data";
+    const std::string JUICE_TAG = "Juice";
 
     std::vector<Order*>* readOrders(std::string address)
     {
@@ -43,7 +42,7 @@ namespace FileHandler
 
                 int idAtVector = OrderUtils::getOrderIndexPosition(orders, orderNumber);
                 
-                if(StringExtensions::Contains(line, "Juice"))
+                if(StringExtensions::Contains(line, JUICE_TAG))
                 {
                     int flavor = std::stoi(data[2]);
                     int size = std::stoi(data[3]);
@@ -81,7 +80,7 @@ namespace FileHandler
                 // Juice
                 if (Juice* juice = dynamic_cast<Juice*>(items->at(j)))
                 {
-                    file << "Juice";
+                    file << JUICE_TAG;
                     file << "," << static_cast<int>(juice->getFlavor());
                     file << "," << static_cast<int>(juice->getSize());
                     file << "," << static_cast<int>(juice->getQuantity());

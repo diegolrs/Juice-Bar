@@ -108,7 +108,7 @@ void ClientInterface::updateOrdersMenu(std::vector<Order*>* orders)
         }
     }
 
-    printOrderMenu(order);
+    displayOrderClientInterface(order);
 }
 
 void ClientInterface::deleteOrdersMenu(std::vector<Order*>* orders)
@@ -153,39 +153,8 @@ void ClientInterface::deleteSucessfullMenu(std::vector<Order*>* orders, int item
     ConsoleUtils::waitKey();
 }
 
-// Items Client Interfaces
-void ClientInterface::printOrderMenu(Order* order)
+void ClientInterface::displayOrderClientInterface(Order* order)
 {
-    int option;
-    while(true)
-    {
-        ConsoleUtils::clearConsole();
-
-        std::cout << "0: Create item" << std::endl;
-        std::cout << "1: Display items" << std::endl;
-        std::cout << "2: Update item" << std::endl;
-        std::cout << "3: Delete item" << std::endl;
-        std::cout << "4: Return" << std::endl;
-        std::cout << "Choose one option: " << std::endl;
-        std::cin >> option;
-
-        switch(option)
-        {
-            case 0: break;
-            case 1:
-                displayOrderItems(order);
-                break;
-            case 4:
-                return;
-            default:
-                break;
-        }
-    }
-}
-
-void ClientInterface::displayOrderItems(Order* order)
-{
-    ConsoleUtils::clearConsole();
-    std::cout << order->to_string();
-    ConsoleUtils::waitKey();
+    Order_ClientInterface* orderInterface = new Order_ClientInterface();
+    orderInterface->startRunning(order);
 }

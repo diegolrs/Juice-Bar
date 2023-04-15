@@ -5,6 +5,7 @@
 #include "Items/Item.hpp"
 #include "Utils/OrderUtils.hpp"
 #include "Utils/ConsoleUtils.hpp"
+#include "Order_ClientInterface.hpp"
 
 class ClientInterface
 {
@@ -19,7 +20,5 @@ class ClientInterface
         void updateOrdersMenu(std::vector<Order*>* orders);
         void deleteOrdersMenu(std::vector<Order*>* orders);
         void deleteSucessfullMenu(std::vector<Order*>* orders, int itemIndex);
-
-        void printOrderMenu(Order* order);
-        void displayOrderItems(Order* order);
+        void displayOrderClientInterface(Order* order);
 };
